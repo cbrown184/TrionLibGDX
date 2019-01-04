@@ -1,12 +1,13 @@
-package com.greenwell.trion.sound;
+package com.greenwell.trion.modules;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.name.Names;
 
 public class SoundModule extends AbstractModule {
 
-    String menuMusic = "music/fogger.mp3";
+    String menuMusic = "music/lylatWarsMenu.mp3";
     String level1music = "music/goinDownTheFastWay.mp3";
+
 
     @Override
     protected void configure() {

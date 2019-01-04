@@ -2,11 +2,12 @@ package com.greenwell.trion.sound;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
+import lombok.extern.slf4j.Slf4j;
 
-import java.lang.management.GarbageCollectorMXBean;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+@Slf4j
 public class StreamingMusicPlayer implements MusicPlayer {
 
     final ExecutorService musicPlayer = Executors.newSingleThreadExecutor();
@@ -21,6 +22,7 @@ public class StreamingMusicPlayer implements MusicPlayer {
     public MusicPlayer play(String soundFile) {
         musicPlayer.submit(() -> {
             startMusicAutoShutdown(soundFile);
+
         });
         return this;
     }
@@ -31,6 +33,7 @@ public class StreamingMusicPlayer implements MusicPlayer {
             try {
                 Thread.sleep(delay);
                 float initialVolume = music.getVolume();
+                log.info("Fading out.. ");
                 for (int i = 0; i < fadeIncrements; i++) {
                     Thread.sleep(fadeTime / fadeIncrements);
                     music.setVolume(music.getVolume() - (initialVolume / fadeIncrements));
@@ -47,11 +50,16 @@ public class StreamingMusicPlayer implements MusicPlayer {
 
     @Override
     public MusicPlayer loop(boolean loop) {
-        musicPlayer.submit(() -> music.setLooping(loop));
+        musicPlayer.submit(() -> {
+            music.setLooping(loop);
+            log.info("Looping " + loop);
+        }
+            );
         return this;
     }
 
     private void startMusicAutoShutdown(String soundFile) {
+        log.info("Playing " + soundFile);
         music = Gdx.audio.newMusic(Gdx.files.internal(soundFile));
         music.play();
         music.setOnCompletionListener(Music::dispose);

@@ -14,7 +14,7 @@ public class Level1Screen extends TrionScreen implements Screen {
 
     @Override
     public void show() {
-        musicPlayer.play(music).loop(true);
+        //musicPlayer.play(music).loop(true);
     }
 
     @Override
