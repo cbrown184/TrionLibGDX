@@ -3,7 +3,7 @@ package com.greenwell.trion.modules;
 import com.badlogic.ashley.core.ComponentMapper;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Family;
-import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.Game;
 import com.google.inject.AbstractModule;
 import com.google.inject.TypeLiteral;
 import com.google.inject.name.Names;
@@ -13,16 +13,21 @@ import com.greenwell.trion.player.KeyBoardController;
 import com.greenwell.trion.player.PlayerController;
 
 public class GameModule extends AbstractModule {
+
+    private Game game;
+
+    public GameModule(Game game) {
+        this.game = game;
+    }
+
+
     @Override
     protected void configure() {
 
+        bind(Game.class).toInstance(game);
+
         //Controller device
         bind(PlayerController.class).to(KeyBoardController.class);
-
-        //Camera
-        OrthographicCamera camera = new OrthographicCamera();
-        camera.setToOrtho(false, 1920, 1080);
-        bind(OrthographicCamera.class).toInstance(camera);
 
         //Entity engine
         Engine engine = new Engine();
@@ -32,7 +37,6 @@ public class GameModule extends AbstractModule {
         ComponentMapper<PositionComponent> pm = ComponentMapper.getFor(PositionComponent.class);
         bind(new TypeLiteral<ComponentMapper<DrawableComponent>>() {}).toInstance(ComponentMapper.getFor(DrawableComponent.class));
         bind(new TypeLiteral<ComponentMapper<PositionComponent>>() {}).toInstance(ComponentMapper.getFor(PositionComponent.class));
-
 
     }
 }

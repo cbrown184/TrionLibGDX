@@ -7,7 +7,7 @@ import com.badlogic.gdx.math.Vector2;
 public class KeyBoardController implements PlayerController{
 
     @Override
-    public void move(float deltaSpeed, Vector2 movement) {
+    public void getMovement(float deltaSpeed, Vector2 movement) {
         if(Gdx.input.isKeyPressed(Input.Keys.A) || Gdx.input.isKeyPressed(Input.Keys.LEFT) ){
             movement.x -= deltaSpeed;
         }

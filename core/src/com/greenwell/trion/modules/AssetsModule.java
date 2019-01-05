@@ -3,7 +3,7 @@ package com.greenwell.trion.modules;
 import com.google.inject.AbstractModule;
 import com.google.inject.name.Names;
 
-public class IntroScreenModule extends AbstractModule {
+public class AssetsModule extends AbstractModule {
 
     private String libGdxLogo =     "images/badlogic-new.png";
     private String libGdxTxt =      "images/libGdxTxt.png";
