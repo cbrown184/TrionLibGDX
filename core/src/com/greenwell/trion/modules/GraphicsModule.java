@@ -3,7 +3,7 @@ package com.greenwell.trion.modules;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.google.inject.AbstractModule;
-import com.greenwell.trion.rendering.shapes.ShapeMachine;
+import com.greenwell.trion.engine.rendering.shapes.ShapeMachine;
 
 public class GraphicsModule  extends AbstractModule {
     @Override

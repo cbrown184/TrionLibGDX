@@ -1,4 +1,4 @@
-package com.greenwell.trion.entity;
+package com.greenwell.trion.engine.entity;
 
 import com.badlogic.ashley.core.Component;
 

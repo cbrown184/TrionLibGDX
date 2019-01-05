@@ -1,4 +1,4 @@
-package com.greenwell.trion.rendering.shapes;
+package com.greenwell.trion.engine.rendering.shapes;
 
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;

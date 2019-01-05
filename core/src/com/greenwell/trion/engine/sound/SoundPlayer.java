@@ -1,4 +1,4 @@
-package com.greenwell.trion.sound;
+package com.greenwell.trion.engine.sound;
 
 import com.badlogic.gdx.audio.Sound;
 

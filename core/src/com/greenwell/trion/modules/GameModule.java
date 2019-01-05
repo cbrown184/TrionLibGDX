@@ -7,14 +7,14 @@ import com.badlogic.gdx.Game;
 import com.google.inject.AbstractModule;
 import com.google.inject.TypeLiteral;
 import com.google.inject.name.Names;
-import com.greenwell.trion.entity.DrawableComponent;
-import com.greenwell.trion.entity.PositionComponent;
-import com.greenwell.trion.player.KeyBoardController;
-import com.greenwell.trion.player.PlayerController;
+import com.greenwell.trion.engine.entity.DrawableComponent;
+import com.greenwell.trion.engine.entity.PositionComponent;
+import com.greenwell.trion.controller.impl.KeyBoardController;
+import com.greenwell.trion.controller.PlayerController;
 
 public class GameModule extends AbstractModule {
 
-    private Game game;
+    Game game;
 
     public GameModule(Game game) {
         this.game = game;
@@ -23,7 +23,6 @@ public class GameModule extends AbstractModule {
 
     @Override
     protected void configure() {
-
         bind(Game.class).toInstance(game);
 
         //Controller device

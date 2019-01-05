@@ -1,7 +1,6 @@
-package com.greenwell.trion.screens;
+package com.greenwell.trion.game.screens.intro;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -9,6 +8,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.greenwell.trion.game.screens.TrionScreen;
+import com.greenwell.trion.game.screens.stage.Dev;
 import com.greenwell.trion.util.PerformanceLogger;
 import lombok.extern.slf4j.Slf4j;
 
@@ -17,19 +18,19 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 @Slf4j
-public class IntroScreen extends TrionScreen implements Screen {
+public class IntroScreen extends TrionScreen {
     private SpriteBatch batch;
 
-    @Inject @Named("ps1") String menuMusic;
+    @Inject @Named("ps1.mp3") String menuMusic;
     @Inject
-    Dev menuScreen;
-    @Inject @Named("libGdxLogo")private String libGdxLogo;
-    @Inject @Named("libgdx198txt")private String libgdx198txt;
-    @Inject @Named("versionTxt")private String versionTxt;
-    @Inject @Named("redMoon")private String redMoon;
-    @Inject @Named("eatMyBallsTxt")private String eatMyBallsTxt;
-    @Inject @Named("rmgTxt")private String rmgTxt;
-    @Inject @Named("redMoonTxt")private String redMoonTxt;
+    Dev devScreen;
+    @Inject @Named("badlogic-new.png")private String libGdxLogo;
+    @Inject @Named("libGdxTxt.png")private String libgdx198txt;
+    @Inject @Named("versionTxt.png")private String versionTxt;
+    @Inject @Named("redMoon.png")private String redMoon;
+    @Inject @Named("eatMyBalls.png")private String eatMyBallsTxt;
+    @Inject @Named("rmgTxt.png")private String rmgTxt;
+    @Inject @Named("redMoonTxt.png")private String redMoonTxt;
 
     BitmapFont font = new BitmapFont();
     Sprite libGdxLogoSprite;
@@ -211,7 +212,7 @@ public class IntroScreen extends TrionScreen implements Screen {
             batch.end();
 
         if(elapsedTime>16000){
-            game.setScreen(menuScreen);
+            game.setScreen(devScreen);
             dispose();
         }
     }

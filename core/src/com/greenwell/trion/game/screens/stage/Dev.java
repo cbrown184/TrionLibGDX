@@ -1,34 +1,16 @@
-package com.greenwell.trion.screens;
+package com.greenwell.trion.game.screens.stage;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.greenwell.trion.player.Player;
-
-import javax.inject.Inject;
-import javax.inject.Named;
-
-public class Dev extends TrionScreen implements Screen {
-
-    @Inject @Named("menuMusic") String menuMusic;
+import com.greenwell.trion.game.screens.GameScreen;
 
 
-    @Inject
-    OrthographicCamera camera;
-    @Inject
-    Player player;
-
-    @Inject
-    ShapeRenderer shapeRenderer;
+public class Dev extends GameScreen {
 
 
     @Override
     public void show() {
-        //musicPlayer.play(menuMusic).loop(true);
-
-
     }
 
     @Override

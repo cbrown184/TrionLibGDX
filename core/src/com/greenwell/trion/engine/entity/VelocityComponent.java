@@ -1,8 +1,8 @@
-package com.greenwell.trion.entity;
+package com.greenwell.trion.engine.entity;
 
 import com.badlogic.ashley.core.Component;
 
-public class PositionComponent implements Component {
+public class VelocityComponent implements Component {
     public float x = 0.0f;
     public float y = 0.0f;
 }

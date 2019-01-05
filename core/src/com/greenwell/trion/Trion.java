@@ -7,10 +7,10 @@ import com.greenwell.trion.modules.AssetsModule;
 import com.greenwell.trion.modules.GameModule;
 import com.greenwell.trion.modules.GraphicsModule;
 import com.greenwell.trion.modules.SoundModule;
-import com.greenwell.trion.screens.Dev;
+import com.greenwell.trion.game.screens.stage.Dev;
 import com.greenwell.trion.util.PerformanceLogger;
 
-public class TrionLibGDX extends Game {
+public class Trion extends Game {
 
     @Override
     public void create() {

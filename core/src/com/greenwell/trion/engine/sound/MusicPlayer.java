@@ -1,4 +1,4 @@
-package com.greenwell.trion.sound;
+package com.greenwell.trion.engine.sound;
 
 public interface MusicPlayer {
     public MusicPlayer play(String filePath);
