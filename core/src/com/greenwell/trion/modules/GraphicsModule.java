@@ -1,9 +1,8 @@
 package com.greenwell.trion.modules;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.google.inject.AbstractModule;
-import com.greenwell.trion.engine.rendering.shapes.ShapeMachine;
+import com.greenwell.trion.engine.rendering.shapes.ShapeRenderer;
 
 public class GraphicsModule  extends AbstractModule {
     @Override
@@ -13,8 +12,8 @@ public class GraphicsModule  extends AbstractModule {
         camera.setToOrtho(false, 1920, 1080);
         bind(OrthographicCamera.class).toInstance(camera);
         //Renderer
-        bind(ShapeRenderer.class).asEagerSingleton();
+        bind(com.badlogic.gdx.graphics.glutils.ShapeRenderer.class).asEagerSingleton();
         //Shapes
-        bind(ShapeMachine.class).asEagerSingleton();
+        bind(ShapeRenderer.class).asEagerSingleton();
     }
 }

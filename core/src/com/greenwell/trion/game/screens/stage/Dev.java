@@ -1,13 +1,25 @@
 package com.greenwell.trion.game.screens.stage;
 
+import com.badlogic.ashley.core.Engine;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.greenwell.trion.engine.TrionEngine;
+import com.greenwell.trion.game.player.Weapons.WeaponSelector;
+import com.greenwell.trion.game.player.Weapons.projectiles.ProjectileProcessor;
 import com.greenwell.trion.game.screens.GameScreen;
+
+import javax.inject.Inject;
 
 
 public class Dev extends GameScreen {
 
+
+//    @Inject
+//    ProjectileProcessor projectileProcessor;
+
+    @Inject
+    Engine engine;
 
     @Override
     public void show() {
@@ -16,13 +28,18 @@ public class Dev extends GameScreen {
     @Override
     public void render(float delta) {
 
-        Gdx.gl.glClearColor(0, 0, 0, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        camera.update();
-        shapeRenderer.setProjectionMatrix(camera.combined);
-        shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
+//        Gdx.gl.glClearColor(0, 0, 0, 1);
+//        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+//        camera.update();
+//        shapeRenderer.setProjectionMatrix(camera.combined);
+//        shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
+//        //player.draw();
+//        projectileProcessor.draw();
+//        shapeRenderer.end();
+//        projectileProcessor.update(delta);
         player.update(delta);
-        shapeRenderer.end();
+        engine.update(delta);
+
 
     }
 

@@ -12,6 +12,5 @@ public abstract class TrionScreen implements Screen {
     protected Game game;
     @Inject
     protected MusicPlayer musicPlayer;
-    @Inject
-    protected ShapeRenderer shapeRenderer;
+
 }

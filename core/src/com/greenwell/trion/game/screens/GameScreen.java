@@ -6,8 +6,9 @@ import com.greenwell.trion.game.player.Player;
 import javax.inject.Inject;
 
 public abstract class GameScreen extends TrionScreen {
-    @Inject
-    protected OrthographicCamera camera;
+
     @Inject
     protected Player player;
+
+
 }
