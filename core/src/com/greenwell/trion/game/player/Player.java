@@ -10,26 +10,27 @@ import com.greenwell.trion.engine.entity.DrawableTriangleComponent;
 import com.greenwell.trion.engine.entity.PositionComponent;
 import com.greenwell.trion.engine.entity.VelocityComponent;
 import com.greenwell.trion.engine.rendering.shapes.ShapeRenderer;
-import com.greenwell.trion.game.player.Weapons.Weapon;
-import com.greenwell.trion.game.player.Weapons.WeaponSelector;
-import com.greenwell.trion.game.player.Weapons.projectiles.ProjectileProcessor;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 
 public class Player implements Updatable, Drawable {
 
-    @Inject
-    ProjectileProcessor projectileProcessor;
+@Inject
+private PlayerController controller;
 
-    @Inject
-    WeaponSelector weaponSelector;
+    @Inject Engine engine;
+    @Inject ShapeRenderer triangleRenderer;
+    @Inject @Named ("player.speed") float speed;
+    @Inject @Named ("player.maxspeed")int maxSpeed;
+    @Inject @Named ("player.height") int height;
+    @Inject @Named ("player.width") int width;
 
-    Weapon equippedWeapon;
-
-    Entity entity = new Entity();
-
-    @Inject
-    Engine engine;
+    private Entity entity = new Entity();
+    private VelocityComponent velocityComponent;
+    private PositionComponent positionComponent;
+    private Vector2 acceleration = new Vector2();
+    private Vector2 deceleration = new Vector2();
 
     @Inject
     public void init() {
@@ -39,106 +40,83 @@ public class Player implements Updatable, Drawable {
         engine.addEntity(entity);
         velocityComponent = entity.getComponent(VelocityComponent.class);
         positionComponent = entity.getComponent(PositionComponent.class);
-        drawableTriangleComponent = entity.getComponent(DrawableTriangleComponent.class);
-        drawableTriangleComponent.height = 25;
-        drawableTriangleComponent.width = 15;
+        DrawableTriangleComponent drawableTriangleComponent = entity.getComponent(DrawableTriangleComponent.class);
+        drawableTriangleComponent.height = height;
+        drawableTriangleComponent.width = width;
     }
-
-    private float triangleHeight = 25;
-    private float triangleWidth = 15;
-    private final float speed = 3000;
-    private final int maxSpeed = 500;
-    private final int maxAcceleration = 10;
-    private final int rotateSpeed = 50;
-
-
-    private boolean rotateBounce = false;
-
-    private Vector2 direction = new Vector2();
-
-
-    private Vector2 position = new Vector2(100, 100);
-    private Vector2 velocity = new Vector2();
-
-    private VelocityComponent velocityComponent;
-    private PositionComponent positionComponent;
-    private DrawableTriangleComponent drawableTriangleComponent;
-    private Vector2 acceleration = new Vector2();
-    private Vector2 deceleration = new Vector2();
-
-
-    @Inject
-    private PlayerController controller;
-
-    @Inject
-    ShapeRenderer triangleRenderer;
 
     @Override
     public void update(float delta) {
+        move(delta);
+    }
 
-        direction = controller.getMovementVector();
+
+    float decelerationFactor = 3f;
+
+    private void move(float delta){
+        Vector2 direction = controller.getMovementVector();
 
         acceleration.set(direction);
         acceleration.scl(speed);
 
+        velocityComponent.velocity.x += acceleration.x * delta;
+        velocityComponent.velocity.y += acceleration.y * delta;
 
-        velocity.x += acceleration.x * delta;
-        velocity.y += acceleration.y * delta;
+        velocityComponent.velocity.limit(maxSpeed);
 
-
-        velocity.limit(maxSpeed);
         if (!controller.isReceivingMovementInput()) {
-            deceleration.set(velocity).scl(3f);
-            velocity.x -= deceleration.x * delta;
-            velocity.y -= deceleration.y * delta;
+            deceleration.set(velocityComponent.velocity).scl(decelerationFactor);
+            velocityComponent.velocity.x -= deceleration.x * delta;
+            velocityComponent.velocity.y -= deceleration.y * delta;
         }
-        velocityComponent.velocity = velocity;
-    }
 
+    }
 
     @Override
     public void draw() {
-        triangleRenderer.renderTriangle(position, triangleHeight, triangleWidth);
+        float triangleHeight = 25;
+        float triangleWidth = 15;
+        triangleRenderer.renderTriangle(positionComponent.position, triangleHeight, triangleWidth);
     }
 
 
     private void spin(float delta) {
 
-        boolean movingRight = direction.x > 0;
-        boolean movingleft = direction.x < 0;
-
-
-        if (movingRight) {
-
-            if (triangleWidth > 3) {
-                triangleWidth -= (delta * rotateSpeed) * (velocity.x) / 1000;
-                triangleHeight += (delta * rotateSpeed) * (velocity.x) / 1000;
-
-            }
-
-
-        } else if (movingleft) {
-
-            if (triangleWidth > 3) {
-                triangleWidth += (delta * rotateSpeed) * (velocity.x / 1) / 1000;
-                triangleHeight -= (delta * rotateSpeed) * (velocity.x / 1) / 1000;
-
-            }
-        } else {
-            if (triangleWidth < 15) {
-                triangleWidth += delta * rotateSpeed / 4;
-            }
-            if (triangleWidth > 15) {
-                triangleWidth = 15;
-            }
-
-            if (triangleHeight > 25) {
-                triangleHeight -= delta * rotateSpeed / 4;
-            }
-            if (triangleHeight < 25) {
-                triangleHeight = 25;
-            }
-        }
+//        boolean movingRight = direction.x > 0;
+//        boolean movingleft = direction.x < 0;
+//
+//
+//        if (movingRight) {
+//
+//            if (triangleWidth > 3) {
+//                triangleWidth -= (delta * rotateSpeed) * (velocityComponent.velocity.x) / 1000;
+//                triangleHeight += (delta * rotateSpeed) * (velocityComponent.velocity.x) / 1000;
+//
+//            }
+//
+//
+//        } else if (movingleft) {
+//
+//            if (triangleWidth > 3) {
+//                triangleWidth += (delta * rotateSpeed) * (velocityComponent.velocity.x / 1) / 1000;
+//                triangleHeight -= (delta * rotateSpeed) * (velocityComponent.velocity.x / 1) / 1000;
+//
+//            }
+//        } else {
+//            if (triangleWidth < 15) {
+//                triangleWidth += delta * rotateSpeed / 4;
+//            }
+//            if (triangleWidth > 15) {
+//                triangleWidth = 15;
+//            }
+//
+//            if (triangleHeight > 25) {
+//                triangleHeight -= delta * rotateSpeed / 4;
+//            }
+//            if (triangleHeight < 25) {
+//                triangleHeight = 25;
+//            }
+//        }
 //
 //        if(movingRight || movingleft) {
 //            if (triangleWidth > 15) {

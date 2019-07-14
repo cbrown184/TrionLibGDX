@@ -25,7 +25,11 @@ public class DrawingSystem extends EntitySystem {
     private final ComponentMapper<DrawableTriangleComponent> triangleMapper = ComponentMapper.getFor(DrawableTriangleComponent.class);
     private final ComponentMapper<DrawableLineComponent> lineMapper = ComponentMapper.getFor(DrawableLineComponent.class);
 
-
+    //Cache
+    private Entity entity;
+    private PositionComponent position;
+    private DrawableTriangleComponent triangleComponent;
+    private DrawableLineComponent lineComponent;
 
     public void addedToEngine(Engine engine) {
         triangles = engine.getEntitiesFor(Family.all(PositionComponent.class, DrawableTriangleComponent.class).get());
@@ -41,17 +45,22 @@ public class DrawingSystem extends EntitySystem {
         shapeMachine.getShapeRenderer().begin(com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType.Line);
 
         for (int i = 0; i < triangles.size(); ++i) {
-            Entity entity = triangles.get(i);
-            PositionComponent position = pm.get(entity);
-            DrawableTriangleComponent triangleComponent = triangleMapper.get(entity);
-            shapeMachine.renderTriangle(position.position, triangleComponent.height, triangleComponent.width);
+            entity = triangles.get(i);
+            position = pm.get(entity);
+            triangleComponent = triangleMapper.get(entity);
+            if(triangleComponent.onScreen){
+                shapeMachine.renderTriangle(position.position, triangleComponent.height, triangleComponent.width);
+            }
+
         }
 
         for (int i = 0; i < lines.size(); ++i) {
-            Entity entity = lines.get(i);
-            PositionComponent position = pm.get(entity);
-            DrawableLineComponent lineComponent = lineMapper.get(entity);
-            shapeMachine.renderLine(position.position, lineComponent.end);
+            entity = lines.get(i);
+            position = pm.get(entity);
+            lineComponent = lineMapper.get(entity);
+            if(lineComponent.onScreen){
+                shapeMachine.renderLine(position.position, lineComponent.end);
+            }
         }
 
         shapeMachine.getShapeRenderer().end();
