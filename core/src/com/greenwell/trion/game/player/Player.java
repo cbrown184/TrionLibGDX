@@ -21,16 +21,18 @@ private PlayerController controller;
 
     @Inject Engine engine;
     @Inject ShapeRenderer triangleRenderer;
-    @Inject @Named ("player.speed") float speed;
+    @Inject @Named ("player.acceleration") float acceleration;
     @Inject @Named ("player.maxspeed")int maxSpeed;
     @Inject @Named ("player.height") int height;
     @Inject @Named ("player.width") int width;
+    @Inject @Named ("player.deceleration") float deceleration;
+
 
     private Entity entity = new Entity();
     private VelocityComponent velocityComponent;
     private PositionComponent positionComponent;
-    private Vector2 acceleration = new Vector2();
-    private Vector2 deceleration = new Vector2();
+    private Vector2 accelerationVector = new Vector2();
+    private Vector2 decelerationVector = new Vector2();
 
     @Inject
     public void init() {
@@ -43,6 +45,7 @@ private PlayerController controller;
         DrawableTriangleComponent drawableTriangleComponent = entity.getComponent(DrawableTriangleComponent.class);
         drawableTriangleComponent.height = height;
         drawableTriangleComponent.width = width;
+       // deceleration %= 1000;
     }
 
     @Override
@@ -51,23 +54,22 @@ private PlayerController controller;
     }
 
 
-    float decelerationFactor = 3f;
 
     private void move(float delta){
         Vector2 direction = controller.getMovementVector();
 
-        acceleration.set(direction);
-        acceleration.scl(speed);
+        accelerationVector.set(direction);
+        accelerationVector.scl(acceleration);
 
-        velocityComponent.velocity.x += acceleration.x * delta;
-        velocityComponent.velocity.y += acceleration.y * delta;
+        velocityComponent.velocity.x += accelerationVector.x * delta;
+        velocityComponent.velocity.y += accelerationVector.y * delta;
 
         velocityComponent.velocity.limit(maxSpeed);
 
         if (!controller.isReceivingMovementInput()) {
-            deceleration.set(velocityComponent.velocity).scl(decelerationFactor);
-            velocityComponent.velocity.x -= deceleration.x * delta;
-            velocityComponent.velocity.y -= deceleration.y * delta;
+            decelerationVector.set(velocityComponent.velocity).scl(deceleration);
+            velocityComponent.velocity.x -= decelerationVector.x * delta;
+            velocityComponent.velocity.y -= decelerationVector.y * delta;
         }
 
     }
