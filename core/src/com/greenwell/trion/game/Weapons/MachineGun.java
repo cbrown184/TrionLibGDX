@@ -1,8 +1,8 @@
-package com.greenwell.trion.game.player.Weapons;
+package com.greenwell.trion.game.Weapons;
 
 import com.badlogic.gdx.math.Vector2;
-import com.greenwell.trion.game.player.Weapons.projectiles.LineProjectile;
-import com.greenwell.trion.game.player.Weapons.projectiles.Projectile;
+import com.greenwell.trion.game.Weapons.projectiles.LineProjectile;
+import com.greenwell.trion.game.Weapons.projectiles.Projectile;
 
 public class MachineGun implements Weapon{
 

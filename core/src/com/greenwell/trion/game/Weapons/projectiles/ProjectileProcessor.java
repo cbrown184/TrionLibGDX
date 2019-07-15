@@ -1,8 +1,8 @@
-package com.greenwell.trion.game.player.Weapons.projectiles;
+package com.greenwell.trion.game.Weapons.projectiles;
 
 import com.greenwell.trion.Drawable;
 import com.greenwell.trion.Updatable;
-import com.greenwell.trion.engine.rendering.shapes.ShapeRenderer;
+import com.greenwell.trion.engine.graphics.ShapeRenderer;
 
 import javax.inject.Inject;
 import java.util.ArrayList;

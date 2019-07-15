@@ -1,8 +1,8 @@
-package com.greenwell.trion.game.player.Weapons.projectiles;
+package com.greenwell.trion.game.Weapons.projectiles;
 
 import com.badlogic.gdx.math.Vector2;
 import com.greenwell.trion.ShapeMachineDrawable;
-import com.greenwell.trion.engine.rendering.shapes.ShapeRenderer;
+import com.greenwell.trion.engine.graphics.ShapeRenderer;
 
 public class LineProjectile extends Projectile implements ShapeMachineDrawable {
 

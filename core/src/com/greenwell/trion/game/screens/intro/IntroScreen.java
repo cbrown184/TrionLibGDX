@@ -65,7 +65,7 @@ public class IntroScreen extends TrionScreen {
         musicPlayer.play(menuMusic);
         startTime = System.currentTimeMillis();
         batch = new SpriteBatch();
-        PerformanceLogger.init(5);
+        PerformanceLogger.init();
     }
 
     @Override

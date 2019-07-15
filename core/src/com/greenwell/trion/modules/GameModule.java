@@ -9,9 +9,9 @@ import com.greenwell.trion.controller.impl.KeyBoardController;
 import com.greenwell.trion.controller.PlayerController;
 import com.greenwell.trion.engine.entitySystems.MovementSystem;
 import com.greenwell.trion.engine.entitySystems.DrawingSystem;
-import com.greenwell.trion.engine.rendering.shapes.ShapeRenderer;
+import com.greenwell.trion.engine.graphics.ShapeRenderer;
 import com.greenwell.trion.game.player.Player;
-import com.greenwell.trion.game.player.Weapons.projectiles.ProjectileProcessor;
+import com.greenwell.trion.game.Weapons.projectiles.ProjectileProcessor;
 
 public class GameModule extends AbstractModule {
 

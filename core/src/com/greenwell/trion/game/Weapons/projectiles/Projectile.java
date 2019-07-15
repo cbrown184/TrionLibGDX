@@ -1,4 +1,4 @@
-package com.greenwell.trion.game.player.Weapons.projectiles;
+package com.greenwell.trion.game.Weapons.projectiles;
 
 import com.badlogic.gdx.math.Vector2;
 import com.greenwell.trion.ShapeMachineDrawable;

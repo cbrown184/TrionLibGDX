@@ -5,10 +5,10 @@ import com.badlogic.ashley.utils.ImmutableArray;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.greenwell.trion.engine.entity.DrawableLineComponent;
-import com.greenwell.trion.engine.entity.DrawableTriangleComponent;
-import com.greenwell.trion.engine.entity.PositionComponent;
-import com.greenwell.trion.engine.rendering.shapes.ShapeRenderer;
+import com.greenwell.trion.engine.entitycomponents.DrawableLineComponent;
+import com.greenwell.trion.engine.entitycomponents.DrawableTriangleComponent;
+import com.greenwell.trion.engine.entitycomponents.PositionComponent;
+import com.greenwell.trion.engine.graphics.ShapeRenderer;
 
 import javax.inject.Inject;
 

@@ -12,6 +12,10 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 public class PerformanceLogger {
 
+    public static void init(){
+        init(5);
+    }
+
     public static void init(int seconds){
         Runnable helloRunnable = new Runnable() {
             public void run() {

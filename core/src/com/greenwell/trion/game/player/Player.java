@@ -6,10 +6,10 @@ import com.badlogic.gdx.math.Vector2;
 import com.greenwell.trion.Drawable;
 import com.greenwell.trion.Updatable;
 import com.greenwell.trion.controller.PlayerController;
-import com.greenwell.trion.engine.entity.DrawableTriangleComponent;
-import com.greenwell.trion.engine.entity.PositionComponent;
-import com.greenwell.trion.engine.entity.VelocityComponent;
-import com.greenwell.trion.engine.rendering.shapes.ShapeRenderer;
+import com.greenwell.trion.engine.entitycomponents.DrawableTriangleComponent;
+import com.greenwell.trion.engine.entitycomponents.PositionComponent;
+import com.greenwell.trion.engine.entitycomponents.VelocityComponent;
+import com.greenwell.trion.engine.graphics.ShapeRenderer;
 
 import javax.inject.Inject;
 import javax.inject.Named;

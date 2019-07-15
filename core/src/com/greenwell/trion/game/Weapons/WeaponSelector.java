@@ -1,4 +1,4 @@
-package com.greenwell.trion.game.player.Weapons;
+package com.greenwell.trion.game.Weapons;
 
 public class WeaponSelector {
 

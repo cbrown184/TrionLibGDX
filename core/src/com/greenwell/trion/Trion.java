@@ -12,7 +12,7 @@ public class Trion extends Game {
 
     @Override
     public void create() {
-        PerformanceLogger.init(5);
+
         Injector injector = Guice.createInjector(
                 new GraphicsModule(),
                 new SoundModule(),
@@ -21,6 +21,8 @@ public class Trion extends Game {
                 new PropertiesModule());
         Dev dev = new Dev();
         injector.injectMembers(dev);
+        injector.injectMembers(PerformanceLogger.class);
+        PerformanceLogger.init();
         setScreen(dev);
 
     }

@@ -2,8 +2,8 @@ package com.greenwell.trion.engine.entitySystems;
 
 import com.badlogic.ashley.core.*;
 import com.badlogic.ashley.utils.ImmutableArray;
-import com.greenwell.trion.engine.entity.PositionComponent;
-import com.greenwell.trion.engine.entity.VelocityComponent;
+import com.greenwell.trion.engine.entitycomponents.PositionComponent;
+import com.greenwell.trion.engine.entitycomponents.VelocityComponent;
 
 public class MovementSystem extends EntitySystem {
     private ImmutableArray<Entity> entities;
