@@ -7,12 +7,9 @@ import com.greenwell.trion.engine.components.reversetime.TimeController;
 import com.greenwell.trion.engine.components.reversetime.TimePosition;
 import com.greenwell.trion.engine.entitycomponents.PositionComponent;
 import com.greenwell.trion.engine.entitycomponents.VelocityComponent;
-import javafx.geometry.Pos;
 import lombok.Getter;
-import lombok.Setter;
 
 import javax.inject.Inject;
-import javax.swing.text.Position;
 
 public class MovementSystem extends EntitySystem {
     private ImmutableArray<Entity> entities;
