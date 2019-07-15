@@ -50,5 +50,10 @@ public class KeyBoardController implements PlayerController {
         return Gdx.input.isKeyPressed(Input.Keys.NUM_1);
     }
 
+    @Override
+    public boolean isReversingTime() {
+        return Gdx.input.isKeyPressed(Input.Keys.R);
+    }
+
 
 }

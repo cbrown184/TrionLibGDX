@@ -6,7 +6,7 @@ import lombok.Getter;
 
 @Data
 public class TimePosition implements Comparable<TimePosition> {
-    @Getter final Vector2 position;
+    @Getter Vector2 position;
     @Getter final long time;
 
     public TimePosition(Vector2 position) {

@@ -14,6 +14,8 @@ public abstract class TimePositionList implements Updatable {
     abstract public TimePosition last();
     abstract public TimePosition first();
     abstract public int size();
+    abstract public TimePosition reversePosition();
+
 
 
 }

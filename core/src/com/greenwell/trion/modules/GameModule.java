@@ -7,6 +7,7 @@ import com.greenwell.trion.engine.TrionEngine;
 
 import com.greenwell.trion.controller.impl.KeyBoardController;
 import com.greenwell.trion.controller.PlayerController;
+import com.greenwell.trion.engine.components.reversetime.TimeController;
 import com.greenwell.trion.engine.entitySystems.MovementSystem;
 import com.greenwell.trion.engine.entitySystems.DrawingSystem;
 import com.greenwell.trion.engine.graphics.ShapeRenderer;
@@ -33,16 +34,20 @@ public class GameModule extends AbstractModule {
         bind(ProjectileProcessor.class).asEagerSingleton();
         bind(ShapeRenderer.class).asEagerSingleton();
 
+        TimeController timeController = new TimeController();
+        bind(TimeController.class).toInstance(timeController);
 
         //Engine
 
         bind(Player.class).asEagerSingleton();
-        MovementSystem movementSystem = new MovementSystem();
+        MovementSystem movementSystem = new MovementSystem(timeController);
         DrawingSystem triangleDrawingSystem = new DrawingSystem();
         TrionEngine trionEngine = new TrionEngine();
         bind(DrawingSystem.class).toInstance(triangleDrawingSystem);
         trionEngine.init(movementSystem, triangleDrawingSystem);
         bind(Engine.class).toInstance(trionEngine);
+
+
 
     }
 }

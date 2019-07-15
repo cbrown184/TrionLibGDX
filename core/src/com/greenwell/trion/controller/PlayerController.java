@@ -7,4 +7,5 @@ public interface PlayerController {
     boolean isReceivingMovementInput();
     boolean isFiring();
     boolean selectMachineGun();
+    boolean isReversingTime();
 }

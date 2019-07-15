@@ -6,6 +6,8 @@ import com.badlogic.gdx.math.Vector2;
 import com.greenwell.trion.Drawable;
 import com.greenwell.trion.Updatable;
 import com.greenwell.trion.controller.PlayerController;
+import com.greenwell.trion.engine.components.reversetime.TimeController;
+import com.greenwell.trion.engine.entitySystems.MovementSystem;
 import com.greenwell.trion.engine.entitycomponents.DrawableTriangleComponent;
 import com.greenwell.trion.engine.entitycomponents.PositionComponent;
 import com.greenwell.trion.engine.entitycomponents.VelocityComponent;
@@ -19,6 +21,7 @@ public class Player implements Updatable, Drawable {
 @Inject
 private PlayerController controller;
 
+    TimeController timeController;
     @Inject Engine engine;
     @Inject ShapeRenderer triangleRenderer;
     @Inject @Named ("player.acceleration") float acceleration;
@@ -27,6 +30,8 @@ private PlayerController controller;
     @Inject @Named ("player.width") int width;
     @Inject @Named ("player.deceleration") float deceleration;
 
+    @Inject
+    MovementSystem movementSystem;
 
     private Entity entity = new Entity();
     private VelocityComponent velocityComponent;
@@ -45,12 +50,18 @@ private PlayerController controller;
         DrawableTriangleComponent drawableTriangleComponent = entity.getComponent(DrawableTriangleComponent.class);
         drawableTriangleComponent.height = height;
         drawableTriangleComponent.width = width;
+        timeController = movementSystem.getTimeController();
        // deceleration %= 1000;
     }
 
     @Override
     public void update(float delta) {
+
         move(delta);
+        if(controller.isReversingTime() && ! timeController.isReversingTime()){
+            timeController.setReversing(true);
+        }
+
     }
 
 
