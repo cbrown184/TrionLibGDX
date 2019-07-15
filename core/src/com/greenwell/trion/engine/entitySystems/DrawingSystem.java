@@ -5,6 +5,7 @@ import com.badlogic.ashley.utils.ImmutableArray;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.math.Vector2;
 import com.greenwell.trion.engine.entitycomponents.DrawableLineComponent;
 import com.greenwell.trion.engine.entitycomponents.DrawableTriangleComponent;
 import com.greenwell.trion.engine.entitycomponents.PositionComponent;
@@ -59,7 +60,7 @@ public class DrawingSystem extends EntitySystem {
             position = pm.get(entity);
             lineComponent = lineMapper.get(entity);
             if(lineComponent.onScreen){
-                shapeMachine.renderLine(position.position, lineComponent.end);
+                shapeMachine.renderLine(position.position, new Vector2(position.position.x +1, position.position.y + 50));
             }
         }
 

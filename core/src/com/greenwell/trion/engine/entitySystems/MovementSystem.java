@@ -36,11 +36,16 @@ public class MovementSystem extends EntitySystem {
             for (int i = 0; i < entities.size(); ++i) {
                 Entity entity = entities.get(i);
                 PositionComponent position = pm.get(entity);
-                TimePosition timePosition = position.timePositionLinkedList.reversePosition();
-                if(position.timePositionLinkedList.getTimePositions().isEmpty()){
-                    timeController.setReversing(false);
+                if(position.timePositionLinkedList.size()>2){
+                    TimePosition timePosition = position.timePositionLinkedList.reversePosition();
+                    if(position.timePositionLinkedList.getTimePositions().isEmpty()){
+                        timeController.setReversing(false);
+                    }
+                    position.position = timePosition.getPosition();
                 }
-                position.position = timePosition.getPosition();
+                else {
+                    entity.remove(PositionComponent.class);
+                }
             }
         } else {
             for (int i = 0; i < entities.size(); ++i) {

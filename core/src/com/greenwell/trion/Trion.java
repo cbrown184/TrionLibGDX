@@ -20,6 +20,7 @@ public class Trion extends Game {
                 new AssetsModule(),
                 new PropertiesModule());
         Dev dev = new Dev();
+        IntroScreen introScreen = new IntroScreen();
         injector.injectMembers(dev);
         injector.injectMembers(PerformanceLogger.class);
         PerformanceLogger.init();

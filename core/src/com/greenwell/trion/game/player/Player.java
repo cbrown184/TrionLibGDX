@@ -8,6 +8,7 @@ import com.greenwell.trion.Updatable;
 import com.greenwell.trion.controller.PlayerController;
 import com.greenwell.trion.engine.components.reversetime.TimeController;
 import com.greenwell.trion.engine.entitySystems.MovementSystem;
+import com.greenwell.trion.engine.entitycomponents.DrawableLineComponent;
 import com.greenwell.trion.engine.entitycomponents.DrawableTriangleComponent;
 import com.greenwell.trion.engine.entitycomponents.PositionComponent;
 import com.greenwell.trion.engine.entitycomponents.VelocityComponent;
@@ -38,6 +39,7 @@ private PlayerController controller;
     private PositionComponent positionComponent;
     private Vector2 accelerationVector = new Vector2();
     private Vector2 decelerationVector = new Vector2();
+    private Vector2 position = new Vector2();
 
     @Inject
     public void init() {
@@ -58,9 +60,31 @@ private PlayerController controller;
     public void update(float delta) {
 
         move(delta);
-        if(controller.isReversingTime() && ! timeController.isReversingTime()){
-            timeController.setReversing(true);
+        if(!controller.isReversingTime() && timeController.isReversingTime()){
+            timeController.setReversing(false);
         }
+        else {
+            if(controller.isReversingTime() && !timeController.isReversingTime()){
+                timeController.setReversing(true);
+            }
+        }
+
+        if(controller.isFiring()){
+            Entity entity = new Entity();
+            DrawableLineComponent dc = new DrawableLineComponent();
+            VelocityComponent vc = new VelocityComponent();
+            PositionComponent pc = new PositionComponent();
+
+            dc.end = new Vector2(10, 30);
+            vc.velocity.y = 4000;
+            pc.position = new Vector2(positionComponent.position);
+
+            entity.add(dc);
+            entity.add(vc);
+            entity.add(pc);
+            engine.addEntity(entity);
+        }
+
 
     }
 
@@ -82,6 +106,9 @@ private PlayerController controller;
             velocityComponent.velocity.x -= decelerationVector.x * delta;
             velocityComponent.velocity.y -= decelerationVector.y * delta;
         }
+
+     //   position = positionComponent.position;
+
 
     }
 
